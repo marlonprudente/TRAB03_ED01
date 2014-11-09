@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1415500846 source:c:\users\marlon prudente\documents\netbeansprojects\trab03_ed01\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+
