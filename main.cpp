@@ -41,7 +41,7 @@ void pilha_push(struct Nodapilha **i)
         // novoNodafila->anterior = NULL;
         novoNodapilha->proximo = NULL;
     };
-    std::cout << "Valor endereço inicio: " << *i;
+   // std::cout << "Valor endereço inicio: " << *i;
     //std::cout << "\nValor endereço Final: " << f << "\n";
 }
 
@@ -49,48 +49,55 @@ void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fim
 {
     struct Nodapilha* aux = *i;
 
-    if(*i!=NULL){
-    if((*fimfila == *iniciofila - 1 )|| (*iniciofila == 0 && *fimfila == 5))
+    //std::cout << "Sem ponteiro: " << iniciofila << "Com ponteiro: " << *iniciofila;
+    if(*i!=NULL)
     {
-        std::cout << "Fila Cheia.\n";
-    }
-    if(*fimfila == 0 && *iniciofila==0)
-    {
-        fila[0] = (**i).dados;
-        (**i).dados = 0;
-        *i = aux->proximo;
-        delete (aux);
+        if((*fimfila == *iniciofila - 1 )|| (*iniciofila == 0 && *fimfila == 5))
+        {
+            std::cout << "Fila Cheia.\n";
+        }
+        if(*fimfila == 0 && *iniciofila==0)
+        {
+            std::cout << "Movendo Dados >> " << (**i).dados << " << da pilha para a Fila.\n";
+            fila[*fimfila] = (**i).dados;
+            (**i).dados = 0;
+            *i = aux->proximo;
+            delete (aux);
+            *fimfila = *fimfila + 1;
+        }
 
-    }
-    if(*fimfila!=5)
-    {
-        if(*iniciofila == (*fimfila +1))
+        if(*fimfila!=5)
         {
-            fila[*fimfila++] = (**i).dados;
-            (**i).dados = 0;
-            *i = aux->proximo;
-            delete (aux);
+            if(*iniciofila == (*fimfila +1))
+            {
+                std::cout << "Movendo Dados >> " << (**i).dados << " << da pilha para a Fila.\n";
+                fila[*fimfila] = (**i).dados;
+                (**i).dados = 0;
+                *i = aux->proximo;
+                delete (aux);
+                *fimfila = *fimfila + 1;
+            }
         }
-    }
-    if(*fimfila==5)
-    {
-        if(fila[0]!=NULL)
+        if(*fimfila==5)
         {
-            fila[0] = (**i).dados;
-            (**i).dados = 0;
-            *i = aux->proximo;
-            delete (aux);
+            if(fila[0]!=0)
+            {
+                std::cout << "Movendo Dados >> " << (**i).dados << " << da pilha para a Fila.\n";
+                fila[0] = (**i).dados;
+                (**i).dados = 0;
+                *i = aux->proximo;
+                delete (aux);
+            }
         }
-    }
-    if(aux->proximo == NULL)
-    {
-        *i = NULL;
-    }
+        if(aux->proximo == NULL)
+        {
+            *i = NULL;
+        }
     }
     else
-        {
+    {
         std::cout << "Pilha Vazia.\n";
-        }
+    }
 
 };
 
@@ -126,10 +133,15 @@ void dequeue_fila(int *fila, int *iniciofila, int *fimfila)
     {
         std::cout << "Fila Vazia.";
     }
-    else
+    else if(*iniciofila!=5)
     {
         fila[*iniciofila] = 0;
         *iniciofila++;
+    }
+    else if(*iniciofila==5 && *fimfila != 0)
+    {
+        fila[*iniciofila] = 0;
+        *iniciofila = 0;
     }
 
 };
@@ -156,6 +168,7 @@ int main(int argc, char * argv[])
         case 3:
             std::cout << "Consultar Valor do topo da Pilha e da Fila: \n";
             print_top_pilha_and_fila(&iniciopilha, fila, &fi);
+            std::cout << "Valor Ini " << fi << " Valor f " << ff;
             break;
         case 4:
             std::cout << "Remover valor da FILA: \n";
