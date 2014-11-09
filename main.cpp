@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-/** Trabalho de Estruturas de Dados 01*/
+/** Trabalho de Estruturas de Dados 01 */
 
 struct Nodapilha
 {
@@ -41,8 +41,8 @@ void pilha_push(struct Nodapilha **i)
         // novoNodafila->anterior = NULL;
         novoNodapilha->proximo = NULL;
     };
-    std::cout << "Valor endereço inicio: " << *i;
-    //std::cout << "\nValor endereço Final: " << f << "\n";
+    std::cout << "Valor endereÃ§o inicio: " << *i;
+    //std::cout << "\nValor endereÃ§o Final: " << f << "\n";
 }
 
 void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fimfila)
