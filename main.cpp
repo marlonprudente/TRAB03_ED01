@@ -56,6 +56,7 @@ void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fim
         {
             std::cout << "Fila Cheia.\n";
         }
+
         if(*fimfila == 0 && *iniciofila==0)
         {
             std::cout << "Movendo Dados >> " << (**i).dados << " << da pilha para a Fila.\n";
@@ -64,19 +65,24 @@ void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fim
             *i = aux->proximo;
             delete (aux);
             *fimfila = *fimfila + 1;
+            std::cout << "Fim e Inicio = 0 ";
         }
 
-        if(*fimfila!=5)
+        else if(*fimfila!=5)
         {
-            if(*iniciofila == (*fimfila +1))
-            {
                 std::cout << "Movendo Dados >> " << (**i).dados << " << da pilha para a Fila.\n";
                 fila[*fimfila] = (**i).dados;
                 (**i).dados = 0;
                 *i = aux->proximo;
                 delete (aux);
                 *fimfila = *fimfila + 1;
+                std::cout << "Fim fila != 5 e outra condição ";
+/*
+            if(*iniciofila == (*fimfila +1))
+            {
+
             }
+*/
         }
         if(*fimfila==5)
         {
@@ -87,6 +93,7 @@ void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fim
                 (**i).dados = 0;
                 *i = aux->proximo;
                 delete (aux);
+                std::cout << "Fim fila == 5 e outra condição ";
             }
         }
         if(aux->proximo == NULL)
