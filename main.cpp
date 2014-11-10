@@ -5,15 +5,12 @@
 
 struct Nodapilha
 {
-    //struct Nodapilha *anterior;
     int dados;
     struct Nodapilha *proximo;
-
-    Nodapilha(int d, Nodapilha* p/*, Nodapilha* a*/)
+    Nodapilha(int d, Nodapilha* p)
     {
         dados = d;
         proximo = p;
-        //  anterior = a;
     }
     Nodapilha() {}
 };
@@ -26,30 +23,23 @@ void pilha_push(struct Nodapilha **i)
     Nodapilha* novoNodapilha = new Nodapilha(dados, NULL), aux;
     if(*i!=NULL)
     {
-        //novoNodafila->anterior = NULL;
         novoNodapilha->proximo = *i;
-        //*i = novoNodafila;
         aux = **i;
-        //aux.anterior = novoNodafila;
         **i = aux;
         *i = novoNodapilha;
     };
+
     if(*i==NULL)
     {
-        //*f = novoNodafila;
         *i = novoNodapilha;
-        // novoNodafila->anterior = NULL;
         novoNodapilha->proximo = NULL;
     };
-   // std::cout << "Valor endereço inicio: " << *i;
-    //std::cout << "\nValor endereço Final: " << f << "\n";
 }
 
 void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fimfila)
 {
     struct Nodapilha* aux = *i;
 
-    //std::cout << "Sem ponteiro: " << iniciofila << "Com ponteiro: " << *iniciofila;
     if(*i!=NULL)
     {
         if((*fimfila == *iniciofila - 1 )|| (*iniciofila == 0 && *fimfila == 5))
@@ -77,12 +67,6 @@ void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fim
                 delete (aux);
                 *fimfila = *fimfila + 1;
                 std::cout << "Fim fila != 5 e outra condição ";
-/*
-            if(*iniciofila == (*fimfila +1))
-            {
-
-            }
-*/
         }
         if(*fimfila==5)
         {
@@ -108,25 +92,25 @@ void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fim
 
 };
 
-void print_top_pilha_and_fila(Nodapilha **i,int *fila,int *iniciofila)
+void print_top_pilha_and_fila(Nodapilha **i,int *fila,int *iniciofila, int *fimfila)
 {
-    if(*i==NULL && fila[*iniciofila]==NULL)
+    if(*i==NULL && fila[*fimfila]==NULL)
     {
         std::cout << "Pilha Vazia.";
         std::cout << "\nFila Vazia.";
 
     }
-    else if(*i==NULL)
+     if(*i==NULL)
     {
         std::cout << "Pilha Vazia.";
         std::cout << "\nValor Topo da Fila:" << fila[*iniciofila];
     }
-    else if(fila[*iniciofila]==NULL)
+     if(fila[*iniciofila]==NULL)
     {
         std::cout << "Valor Topo da Pilha:" << (**i).dados;
         std::cout << "\nFila Vazia.";
     }
-    else if((*i!=NULL) && (fila[*iniciofila]!=NULL))
+     if((*i!=NULL) && (fila[*iniciofila]!=NULL))
     {
         std::cout << "Valor Topo da Pilha:" << (**i).dados;
         std::cout << "\nValor Topo da Fila:" << fila[*iniciofila];
@@ -140,17 +124,22 @@ void dequeue_fila(int *fila, int *iniciofila, int *fimfila)
     {
         std::cout << "Fila Vazia.";
     }
-    else if(*iniciofila!=5)
+    if(*iniciofila!=5)
     {
         fila[*iniciofila] = 0;
         *iniciofila++;
     }
-    else if(*iniciofila==5 && *fimfila != 0)
+    if(*iniciofila==5 && *fimfila != 0)
     {
         fila[*iniciofila] = 0;
         *iniciofila = 0;
     }
-
+    /*else
+        {
+        fila[*iniciofila] = 0;
+        *iniciofila++;
+        }
+*/
 };
 
 int main(int argc, char * argv[])
@@ -174,7 +163,7 @@ int main(int argc, char * argv[])
             break;
         case 3:
             std::cout << "Consultar Valor do topo da Pilha e da Fila: \n";
-            print_top_pilha_and_fila(&iniciopilha, fila, &fi);
+            print_top_pilha_and_fila(&iniciopilha, fila, &fi, &ff);
             std::cout << "Valor Ini " << fi << " Valor f " << ff;
             break;
         case 4:
