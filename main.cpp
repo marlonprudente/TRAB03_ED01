@@ -14,7 +14,7 @@ struct Nodapilha
     }
     Nodapilha() {}
 };
-
+/** Função responsável por inserir valores na pilha*/
 void pilha_push(struct Nodapilha **i)
 {
     int dados;
@@ -35,7 +35,7 @@ void pilha_push(struct Nodapilha **i)
         novoNodapilha->proximo = NULL;
     };
 }
-
+/** Função responsável por mover valores da pilha para a fila*/
 void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fimfila,int *tamf)
 {
     struct Nodapilha* aux = *i;
@@ -50,6 +50,7 @@ void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fim
             }
 
             *fimfila = *fimfila + 1;
+            std::cout << "\nMovendo Valor => " << aux->dados << " <=da PILHA para a FILA.\n";
             fila[*fimfila] = aux->dados;
             aux->dados = 0;
 
@@ -69,157 +70,61 @@ void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fim
         }
         else
             {
-                /*
-            *fimfila = *fimfila + 1;
-            fila[*fimfila] = (**i).dados;
-            (**i).dados = 0;
-
-                if(aux->proximo != NULL)
-                {
-                    *i = aux->proximo;
-                }
-                else
-                {
-                    *i = NULL;
-                }
-            delete (aux);
-            *tamf = *tamf + 1;
-            */
-            std::cout << "Fila Cheia.\n";
+            std::cout << "\nFila Cheia.\n";
             }
-
-
-
-
-
-        /*
-        if(tamf == 4)
-        {
-            std::cout << "Fila Cheia.\n";
-        }
-
-        if(*fimfila == *iniciofila)
-        {
-            std::cout << "Movendo Dados >> " << (**i).dados << " << da pilha para a Fila.\n";
-            fila[*fimfila] = (**i).dados;
-            (**i).dados = 0;
-            *i = aux->proximo;
-            delete (aux);
-            *fimfila = *fimfila + 1;
-            *tamf = *tamf + 1;
-            std::cout << "Fim e Inicio = 0 ";
-        }
-
-        else if(*fimfila!=5)
-        {
-                std::cout << "Movendo Dados >> " << (**i).dados << " << da pilha para a Fila.\n";
-                fila[*fimfila] = (**i).dados;
-                (**i).dados = 0;
-                *i = aux->proximo;
-                delete (aux);
-                *fimfila = *fimfila + 1;
-                *tamf = *tamf + 1;
-                std::cout << "Fim fila != 5 e outra condição ";
-        }
-       /* if(*fimfila==5)
-        {
-            if(fila[0]!=0)
-            {
-                std::cout << "Movendo Dados >> " << (**i).dados << " << da pilha para a Fila.\n";
-                fila[0] = (**i).dados;
-                (**i).dados = 0;
-                *i = aux->proximo;
-                *tamf = *tamf + 1;
-                delete (aux);
-                std::cout << "Fim fila == 5 e outra condição ";
-            }
-        }*//*
-        if(*tamf < 5 && fila[*iniciofila]!=0)
-        {
-                std::cout << "Movendo Dados >> " << (**i).dados << " << da pilha para a Fila.\n";
-                *fimfila = *fimfila - *iniciofila;
-               // *iniciofila = *fimfila;
-                fila[*fimfila] = (**i).dados;
-                (**i).dados = 0;
-                *i = aux->proximo;
-                *tamf = *tamf + 1;
-                delete (aux);
-
-
-        }
-        if(aux->proximo == NULL)
-        {
-            *i = NULL;
-        }*/
     }
     else
     {
-        std::cout << "Pilha Vazia.\n";
+        std::cout << "\nPilha Vazia.\n";
     }
 
 };
-
+/** Função responsável por mostrar valores do inicio da pilha e do topo da fila*/
 void print_top_pilha_and_fila(Nodapilha **i,int *fila,int *iniciofila, int *fimfila, int *tamf)
 {
     if(*i==NULL && *tamf==1)
     {
-        std::cout << "Pilha Vazia.";
-        std::cout << "\nFila Vazia.";
+        std::cout << "\nPilha Vazia.";
+        std::cout << "\nFila Vazia.\n";
 
     }
     else if(*i==NULL)
     {
-        std::cout << "Pilha Vazia.";
-        std::cout << "\nValor Topo da Fila:" << fila[*iniciofila];
+        std::cout << "\nPilha Vazia.";
+        std::cout << "\nValor Topo da Fila:" << fila[*iniciofila] << "\n";
     }
     else if(*tamf==1)
     {
-        std::cout << "Valor Topo da Pilha:" << (**i).dados;
-        std::cout << "\nFila Vazia.";
+        std::cout << "\nValor Topo da Pilha:" << (**i).dados;
+        std::cout << "\nFila Vazia.\n";
     }
      if((*i!=NULL) && (*tamf!=1))
     {
-        std::cout << "Valor Topo da Pilha:" << (**i).dados;
-        std::cout << "\nValor Topo da Fila:" << fila[*iniciofila];
+        std::cout << "\nValor Topo da Pilha:" << (**i).dados;
+        std::cout << "\nValor Topo da Fila:" << fila[*iniciofila] << "\n";
     }
 
 };
-
+/** Função responsável por remover falores da fila*/
 void dequeue_fila(int *fila, int *iniciofila, int *fimfila, int *tamf)
 {
     if(*tamf==1)
     {
-        std::cout << "Fila Vazia.";
+        std::cout << "Fila Vazia.\n";
     }
     else
     {
+    std::cout << "\nRemovendo Valor => " << fila[*iniciofila] << " <= da FILA.\n";
     fila[*iniciofila] = NULL;
     *iniciofila = *iniciofila + 1;
     if(*iniciofila == 5)
         {
                 *iniciofila = 0;
         }
-
-        std::cout << "Valor Indice INICIO:" << *iniciofila;
         *tamf = *tamf -1;
-    /*
-    if(*iniciofila!=5)
-    {
-        fila[*iniciofila] = 0;
-        *iniciofila = *iniciofila + 1;
-        *tamf = *tamf - 1;
-    }
-
-    if(*iniciofila==5 && *fimfila != 0)
-    {
-        fila[*iniciofila] = 0;
-        *iniciofila = 0;
-        *tamf = *tamf - 1;
-    }
-*/
     }
 };
-
+/** Função principal Main*/
 int main(int argc, char * argv[])
 {
     struct Nodapilha *iniciopilha = NULL;
@@ -229,7 +134,7 @@ int main(int argc, char * argv[])
 
     while(op!=0)
     {
-        switch (tolower(op))
+        switch (op)
         {
         case 1:
             std::cout << "Inserir na Pilha: \n";
@@ -242,8 +147,6 @@ int main(int argc, char * argv[])
         case 3:
             std::cout << "Consultar Valor do topo da Pilha e da Fila: \n";
             print_top_pilha_and_fila(&iniciopilha, fila, &fi, &ff, &tamf);
-            std::cout << "Valor Ini " << fi << " Valor f " << ff;
-            std::cout << "\n\ntamanho Fila: " << tamf - 1;
             break;
         case 4:
             std::cout << "Remover valor da FILA: \n";
