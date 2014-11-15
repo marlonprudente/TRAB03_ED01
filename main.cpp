@@ -42,16 +42,16 @@ void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fim
 
     if(*i!=NULL)
     {
-        if(*tamf!=1)
+        if(*tamf<6)
         {
-            if(*fimfila == *tamf - 1)
+            if(*fimfila == 4)
             {
             *fimfila = -1;
             }
 
             *fimfila = *fimfila + 1;
-            fila[*fimfila] = (**i).dados;
-            (**i).dados = 0;
+            fila[*fimfila] = aux->dados;
+            aux->dados = 0;
 
                 if(aux->proximo != NULL)
                 {
@@ -69,6 +69,7 @@ void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fim
         }
         else
             {
+                /*
             *fimfila = *fimfila + 1;
             fila[*fimfila] = (**i).dados;
             (**i).dados = 0;
@@ -83,6 +84,8 @@ void move_pilha_to_fila(struct Nodapilha **i, int *fila,int *iniciofila,int *fim
                 }
             delete (aux);
             *tamf = *tamf + 1;
+            */
+            std::cout << "Fila Cheia.\n";
             }
 
 
@@ -188,17 +191,16 @@ void dequeue_fila(int *fila, int *iniciofila, int *fimfila, int *tamf)
     {
         std::cout << "Fila Vazia.";
     }
-    if(*iniciofila == *fimfila + 1)
+    else
+    {
+    fila[*iniciofila] = NULL;
+    *iniciofila = *iniciofila + 1;
+    if(*iniciofila == 5)
         {
                 *iniciofila = 0;
-                *fimfila = -1;
         }
 
-
-        fila[*iniciofila] = NULL;
-        *iniciofila = *iniciofila + 1;
         std::cout << "Valor Indice INICIO:" << *iniciofila;
-
         *tamf = *tamf -1;
     /*
     if(*iniciofila!=5)
@@ -215,6 +217,7 @@ void dequeue_fila(int *fila, int *iniciofila, int *fimfila, int *tamf)
         *tamf = *tamf - 1;
     }
 */
+    }
 };
 
 int main(int argc, char * argv[])
