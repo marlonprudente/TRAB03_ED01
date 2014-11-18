@@ -1,7 +1,12 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-/** Trabalho de Estruturas de Dados 01 */
+/** Trabalho de Estruturas de Dados 01
+Marlon Mateus Prudente
+Helena Senn Arins
+*/
+
+
 
 struct Nodapilha
 {
